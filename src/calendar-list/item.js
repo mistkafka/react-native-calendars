@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import {extractComponentProps} from '../component-updater';
@@ -7,14 +6,6 @@ import styleConstructor from './style';
 
 class CalendarListItem extends Component {
   static displayName = 'IGNORE';
-
-  static propTypes = {
-    ...Calendar.propTypes,
-    item: PropTypes.any,
-    calendarWidth: PropTypes.number,
-    calendarHeight: PropTypes.number,
-    horizontal: PropTypes.bool
-  };
 
   static defaultProps = {
     hideArrows: true,

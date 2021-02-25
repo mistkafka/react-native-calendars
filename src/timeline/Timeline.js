@@ -1,6 +1,5 @@
 // @flow
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity, Dimensions} from 'react-native';
@@ -17,21 +16,6 @@ function range(from, to) {
 let {width: dimensionWidth} = Dimensions.get('window');
 
 export default class Timeline extends React.PureComponent {
-  static propTypes = {
-    start: PropTypes.number,
-    end: PropTypes.number,
-    eventTapped: PropTypes.func,
-    format24h: PropTypes.bool,
-    events: PropTypes.arrayOf(
-      PropTypes.shape({
-        start: PropTypes.string.isRequired,
-        end: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        summary: PropTypes.string.isRequired,
-        color: PropTypes.string
-      })
-    ).isRequired
-  };
 
   static defaultProps = {
     start: 0,
@@ -94,7 +78,7 @@ export default class Timeline extends React.PureComponent {
 
     return range(start, end + 1).map((i, index) => {
       let timeText;
-      
+
       if (i === start) {
         timeText = '';
       } else if (i < 12) {
@@ -143,7 +127,7 @@ export default class Timeline extends React.PureComponent {
       // However it would make sense to overflow the title to a new line if needed
       const numberOfLines = Math.floor(event.height / TEXT_LINE_HEIGHT);
       const formatTime = this.props.format24h ? 'HH:mm' : 'hh:mm A';
-      
+
       return (
         <TouchableOpacity
           activeOpacity={0.9}

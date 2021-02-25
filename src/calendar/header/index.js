@@ -1,6 +1,4 @@
 import _ from 'lodash';
-import PropTypes from 'prop-types';
-import XDate from 'xdate';
 import React, {Component, Fragment} from 'react';
 import {ActivityIndicator, Platform, View, Text, TouchableOpacity, Image} from 'react-native';
 import {shouldUpdate} from '../../component-updater';
@@ -16,37 +14,6 @@ import styleConstructor from './style';
 
 class CalendarHeader extends Component {
   static displayName = 'IGNORE';
-
-  static propTypes = {
-    theme: PropTypes.object,
-    firstDay: PropTypes.number,
-    displayLoadingIndicator: PropTypes.bool,
-    showWeekNumbers: PropTypes.bool,
-    month: PropTypes.instanceOf(XDate),
-    addMonth: PropTypes.func,
-    /** Month format in the title. Formatting values: http://arshaw.com/xdate/#Formatting */
-    monthFormat: PropTypes.string,
-    /**  Hide day names. Default = false */
-    hideDayNames: PropTypes.bool,
-    /** Hide month navigation arrows. Default = false */
-    hideArrows: PropTypes.bool,
-    /** Replace default arrows with custom ones (direction can be 'left' or 'right') */
-    renderArrow: PropTypes.func,
-    /** Handler which gets executed when press arrow icon left. It receive a callback can go back month */
-    onPressArrowLeft: PropTypes.func,
-    /** Handler which gets executed when press arrow icon right. It receive a callback can go next month */
-    onPressArrowRight: PropTypes.func,
-    /** Disable left arrow. Default = false */
-    disableArrowLeft: PropTypes.bool,
-    /** Disable right arrow. Default = false */
-    disableArrowRight: PropTypes.bool,
-    /** Apply custom disable color to selected day indexes */
-    disabledDaysIndexes: PropTypes.arrayOf(PropTypes.number),
-    /** Replace default month and year title with custom one. the function receive a date as parameter. */
-    renderHeader: PropTypes.any,
-    /** Provide aria-level for calendar heading for proper accessibility when used with web (react-native-web) */
-    webAriaLevel: PropTypes.number
-  };
 
   static defaultProps = {
     monthFormat: 'MMMM yyyy',

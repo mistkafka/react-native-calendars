@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {TouchableWithoutFeedback, Text, View} from 'react-native';
 import {shouldUpdate} from '../../../component-updater';
@@ -11,21 +10,12 @@ import Dot from '../dot';
 export default class PeriodDay extends Component {
   static displayName = 'IGNORE';
 
-  static propTypes = {
-    state: PropTypes.oneOf(['selected', 'disabled', 'today', '']), //TODO: deprecate
-    marking: PropTypes.any,
-    theme: PropTypes.object,
-    onPress: PropTypes.func,
-    onLongPress: PropTypes.func,
-    date: PropTypes.object
-  };
-
   constructor(props) {
     super(props);
 
     this.theme = {...defaultStyle, ...(props.theme || {})};
     this.style = styleConstructor(props.theme);
-    
+
     this.markingStyle = this.getDrawingStyle(props.marking || []);
   }
 
@@ -49,7 +39,7 @@ export default class PeriodDay extends Component {
 
   getDrawingStyle(marking) {
     const defaultStyle = {textStyle: {}, containerStyle: {}};
-    
+
     if (!marking) {
       return defaultStyle;
     }
@@ -61,7 +51,7 @@ export default class PeriodDay extends Component {
     }
 
     const resultStyle = ([marking]).reduce((prev, next) => {
-      
+
       if (next.quickAction) { //???
         if (next.first || next.last) {
           prev.containerStyle = this.style.firstQuickAction;
@@ -84,7 +74,7 @@ export default class PeriodDay extends Component {
       if (next.status === 'NotAvailable') { //???
         prev.textStyle = this.style.naText;
       }
-      
+
       const color = next.color;
       if (next.startingDay) {
         prev.startingDay = {color};

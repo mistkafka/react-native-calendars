@@ -1,8 +1,7 @@
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 import React, {Component} from 'react';
-import * as ReactNative from 'react-native';
+const {Text, View, Dimensions, Animated} = 'react-native';
 import {extractComponentProps} from '../component-updater';
 import {parseDate, xdateToData} from '../interface';
 import dateutils from '../dateutils';
@@ -15,11 +14,6 @@ import ReservationList from './reservation-list';
 const HEADER_HEIGHT = 104;
 const KNOB_HEIGHT = 24;
 
-//Fallback for react-native-web or when RN version is < 0.44
-const {Text, View, Dimensions, Animated, ViewPropTypes} = ReactNative;
-const viewPropTypes =
-  typeof document !== 'undefined' ? PropTypes.shape({style: PropTypes.object}) : ViewPropTypes || View.propTypes;
-
 /**
  * @description: Agenda component
  * @extends: CalendarList
@@ -29,31 +23,6 @@ const viewPropTypes =
  */
 export default class AgendaView extends Component {
   static displayName = 'Agenda';
-
-  static propTypes = {
-    ...CalendarList.propTypes,
-    ...ReservationList.propTypes,
-    /** agenda container style */
-    style: viewPropTypes.style,
-    /** the list of items that have to be displayed in agenda. If you want to render item as empty date
-     the value of date key has to be an empty array []. If there exists no value for date key it is
-     considered that the date in question is not yet loaded */
-    items: PropTypes.object,
-    /** callback that gets called when items for a certain month should be loaded (month became visible) */
-    loadItemsForMonth: PropTypes.func,
-    /** callback that fires when the calendar is opened or closed */
-    onCalendarToggled: PropTypes.func,
-    /** callback that gets called on day press */
-    onDayPress: PropTypes.func,
-    /** callback that gets called when day changes while scrolling agenda list */
-    onDaychange: PropTypes.func, //TODO: Should be renamed 'onDayChange'
-    /** specify how agenda knob should look like */
-    renderKnob: PropTypes.func, 
-    /** initially selected day */ 
-    selected: PropTypes.any, //TODO: Should be renamed 'selectedDay'
-    /** Hide knob button. Default = false */
-    hideKnob: PropTypes.bool
-  };
 
   constructor(props) {
     super(props);

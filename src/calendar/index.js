@@ -1,8 +1,7 @@
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 import React, {Component} from 'react';
-import * as ReactNative from 'react-native';
+import {View} from 'react-native';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import dateutils from '../dateutils';
 import {xdateToData, parseDate} from '../interface';
@@ -14,10 +13,6 @@ import CalendarHeader from './header';
 import BasicDay from './day/basic';
 import Day from './day/index';
 
-//Fallback for react-native-web or when RN version is < 0.44
-const {View, ViewPropTypes} = ReactNative;
-const viewPropTypes =
-  typeof document !== 'undefined' ? PropTypes.shape({style: PropTypes.object}) : ViewPropTypes || View.propTypes;
 const EmptyArray = [];
 
 /**
@@ -27,51 +22,6 @@ const EmptyArray = [];
  */
 class Calendar extends Component {
   static displayName = 'Calendar';
-
-  static propTypes = {
-    ...CalendarHeader.propTypes,
-    ...Day.propTypes,
-    /** Specify theme properties to override specific styles for calendar parts. Default = {} */
-    theme: PropTypes.object,
-    /** Specify style for calendar container element. Default = {} */
-    style: viewPropTypes.style,
-    /** Initially visible month. Default = Date() */
-    current: PropTypes.any,
-    /** Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined */
-    minDate: PropTypes.any,
-    /** Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined */
-    maxDate: PropTypes.any,
-    /** If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday. */
-    firstDay: PropTypes.number,
-    /** Collection of dates that have to be marked. Default = {} */
-    markedDates: PropTypes.object,
-    /** Display loading indicator. Default = false */
-    displayLoadingIndicator: PropTypes.bool,
-    /** Show week numbers. Default = false */
-    showWeekNumbers: PropTypes.bool,
-    /** Do not show days of other months in month page. Default = false */
-    hideExtraDays: PropTypes.bool,
-    /** Always show six weeks on each month (only when hideExtraDays = false). Default = false */
-    showSixWeeks: PropTypes.bool,
-    /** Handler which gets executed on day press. Default = undefined */
-    onDayPress: PropTypes.func,
-    /** Handler which gets executed on day long press. Default = undefined */
-    onDayLongPress: PropTypes.func,
-    /** Handler which gets executed when month changes in calendar. Default = undefined */
-    onMonthChange: PropTypes.func,
-    /** Handler which gets executed when visible month changes in calendar. Default = undefined */
-    onVisibleMonthsChange: PropTypes.func,
-    /** Disables changing month when click on days of other months (when hideExtraDays is false). Default = false */
-    disableMonthChange: PropTypes.bool,
-    /** Enable the option to swipe between months. Default: false */
-    enableSwipeMonths: PropTypes.bool,
-    /** Disable days by default. Default = false */
-    disabledByDefault: PropTypes.bool,
-    /** Style passed to the header */
-    headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array]),
-    /** Allow rendering of a totally custom header */
-    customHeader: PropTypes.any
-  };
 
   static defaultProps = {
     enableSwipeMonths: false
@@ -88,7 +38,7 @@ class Calendar extends Component {
 
     this.shouldComponentUpdate = shouldComponentUpdate;
   }
-  
+
   addMonth = count => {
     this.updateMonth(this.state.currentMonth.clone().addMonths(count, true));
   };

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
 import {Animated, TouchableOpacity, View} from 'react-native';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 
 import dateutils from '../dateutils';
@@ -22,23 +21,6 @@ const TOP_POSITION = 65;
  */
 class CalendarProvider extends Component {
   static displayName = 'CalendarProvider';
-
-  static propTypes = {
-    /** Initial date in 'yyyy-MM-dd' format. Default = Date() */
-    date: PropTypes.any.isRequired,
-    /** Callback for date change event */
-    onDateChanged: PropTypes.func,
-    /** Callback for month change event */
-    onMonthChange: PropTypes.func,
-    /** Whether to show the today button */
-    showTodayButton: PropTypes.bool,
-    /** Today button's top position */
-    todayBottomMargin: PropTypes.number,
-    /** Today button's style */
-    todayButtonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array]),
-    /** The opacity for the disabled today button (0-1) */
-    disabledOpacity: PropTypes.number
-  }
 
   constructor(props) {
     super(props);

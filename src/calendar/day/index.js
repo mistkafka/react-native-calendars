@@ -1,5 +1,3 @@
-import _ from 'lodash';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 import React, {Component} from 'react';
 import {shouldUpdate, extractComponentProps} from '../../component-updater';
@@ -8,19 +6,8 @@ import {SELECT_DATE_SLOT} from '../../testIDs';
 import BasicDay from './basic';
 import PeriodDay from './period';
 
-
-const basicDayProps = _.omit(BasicDay.propTypes, 'date');
-
 export default class Day extends Component {
   static displayName = 'IGNORE';
-
-  static propTypes = {
-    ...basicDayProps,
-    /** The day to render */
-    day: PropTypes.object,
-    /** Provide custom day rendering component */
-    dayComponent: PropTypes.any
-  };
 
   shouldComponentUpdate(nextProps) {
     return shouldUpdate(this.props, nextProps, ['day', 'dayComponent', 'markingType', 'marking', 'onPress', 'onLongPress']);

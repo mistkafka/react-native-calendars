@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
@@ -10,20 +9,6 @@ import styleConstructor from './style';
 
 class Reservation extends Component {
   static displayName = 'IGNORE';
-
-  static propTypes = {
-    item: PropTypes.any,
-    /** Specify theme properties to override specific styles for reservation parts. Default = {} */
-    theme: PropTypes.object,
-    /** specify your item comparison function for increased performance */
-    rowHasChanged: PropTypes.func,
-    /** specify how each date should be rendered. day can be undefined if the item is not first in that day */
-    renderDay: PropTypes.func,
-    /** specify how each item should be rendered in agenda */
-    renderItem: PropTypes.func,
-    /** specify how empty date content with no items should be rendered */
-    renderEmptyDate: PropTypes.func
-  };
 
   constructor(props) {
     super(props);

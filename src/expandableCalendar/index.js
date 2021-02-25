@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
 import {AccessibilityInfo, PanResponder, Animated, View, Text, Image} from 'react-native';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 import {CALENDAR_KNOB} from '../testIDs';
 
@@ -37,26 +36,6 @@ const DAY_NAMES_PADDING = 24;
  */
 class ExpandableCalendar extends Component {
   static displayName = 'ExpandableCalendar';
-
-  static propTypes = {
-    ...CalendarList.propTypes,
-    /** the initial position of the calendar ('open' or 'closed') */
-    initialPosition: PropTypes.oneOf(_.values(POSITIONS)),
-    /** callback that fires when the calendar is opened or closed */
-    onCalendarToggled: PropTypes.func,
-    /** an option to disable the pan gesture and disable the opening and closing of the calendar (initialPosition will persist)*/
-    disablePan: PropTypes.bool,
-    /** whether to hide the knob  */
-    hideKnob: PropTypes.bool,
-    /** source for the left arrow image */
-    leftArrowImageSource: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.func]),
-    /** source for the right arrow image */
-    rightArrowImageSource: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.func]),
-    /** whether to have shadow/elevation for the calendar */
-    allowShadow: PropTypes.bool,
-    /** whether to disable the week scroll in closed position */
-    disableWeekScroll: PropTypes.bool
-  };
 
   static defaultProps = {
     horizontal: true,

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
 import {SectionList, Text} from 'react-native';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 import moment from 'moment';
 import dateutils from '../dateutils';
@@ -20,21 +19,6 @@ const UPDATE_SOURCES = commons.UPDATE_SOURCES;
  */
 class AgendaList extends Component {
   static displayName = 'AgendaList';
-
-  static propTypes = {
-    ...SectionList.propTypes,
-    /** day format in section title. Formatting values: http://arshaw.com/xdate/#Formatting */
-    dayFormat: PropTypes.string,
-    /** a function to custom format the section header's title */
-    dayFormatter: PropTypes.func,
-    /** whether to use moment.js for date string formatting 
-     * (remember to pass 'dayFormat' with appropriate format, like 'dddd, MMM D') */
-    useMoment: PropTypes.bool,
-    /** whether to mark today's title with the "Today, ..." string. Default = true */
-    markToday: PropTypes.bool,
-    /** style passed to the section view */
-    sectionStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array])
-  }
 
   static defaultProps = {
     dayFormat: 'dddd, MMM d',
@@ -165,9 +149,9 @@ class AgendaList extends Component {
     }
 
     return (
-      <Text 
-        allowFontScaling={false} 
-        style={[this.style.sectionText, sectionStyle]} 
+      <Text
+        allowFontScaling={false}
+        style={[this.style.sectionText, sectionStyle]}
         onLayout={this.onHeaderLayout}
       >
         {sectionTitle}

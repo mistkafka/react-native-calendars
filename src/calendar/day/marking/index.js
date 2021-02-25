@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import {shouldUpdate, extractComponentProps} from '../../../component-updater';
@@ -14,60 +13,28 @@ const MARKING_TYPES = {
   custom: 'custom'
 };
 
-const DOT = {
-  key: PropTypes.string,
-  color: PropTypes.string,
-  selectedDotColor: PropTypes.string
-};
-
-const PERIOD = {
-  startingDay: PropTypes.bool,
-  endingDay: PropTypes.bool,
-  color: PropTypes.string
-};
-
-
 export default class Marking extends Component {
   static displayName = 'IGNORE';
-
-  static propTypes = {
-    ...Dot.propTypes,
-    type: PropTypes.oneOf(Object.values(MARKING_TYPES)),
-    theme: PropTypes.object,
-    selected: PropTypes.bool,
-    marked: PropTypes.bool,
-    today: PropTypes.bool,
-    disabled: PropTypes.bool,
-    disableTouchEvent: PropTypes.bool,
-    activeOpacity: PropTypes.number,
-    selectedColor: PropTypes.string,
-    selectedTextColor: PropTypes.string,
-    dotColor: PropTypes.string,
-    //multi-dot
-    dots: PropTypes.arrayOf(PropTypes.shape(DOT)),
-    //multi-period
-    periods: PropTypes.arrayOf(PropTypes.shape(PERIOD))
-  };
 
   static markingTypes = MARKING_TYPES;
 
   constructor(props) {
     super(props);
-    
+
     this.style = styleConstructor(props.theme);
   }
 
   shouldComponentUpdate(nextProps) {
     return shouldUpdate(this.props, nextProps, [
-      'type', 
-      'selected', 
-      'marked', 
-      'today', 
-      'disabled', 
-      'disableTouchEvent', 
-      'activeOpacity', 
-      'selectedColor', 
-      'selectedTextColor', 
+      'type',
+      'selected',
+      'marked',
+      'today',
+      'disabled',
+      'disableTouchEvent',
+      'activeOpacity',
+      'selectedColor',
+      'selectedTextColor',
       'dotColor',
       'dots',
       'periods'
@@ -76,11 +43,11 @@ export default class Marking extends Component {
 
   getItems(items) {
     const {type} = this.props;
-    
+
     if (items && Array.isArray(items) && items.length > 0) {
       // Filter out items so that we process only those which have color property
       const validItems = items.filter(d => d && d.color);
-      
+
       return validItems.map((item, index) => {
         return type === MARKING_TYPES.multiDot ? this.renderDot(index, item) : this.renderPeriod(index, item);
       });
@@ -92,9 +59,9 @@ export default class Marking extends Component {
 
     switch (type) {
       case MARKING_TYPES.multiDot:
-        return this.renderMultiMarkings(this.style.dots, dots); 
+        return this.renderMultiMarkings(this.style.dots, dots);
       case MARKING_TYPES.multiPeriod:
-        return this.renderMultiMarkings(this.style.periods, periods);    
+        return this.renderMultiMarkings(this.style.periods, periods);
       default:
         return this.renderDot();
     }
@@ -130,7 +97,7 @@ export default class Marking extends Component {
     const dotProps = extractComponentProps(Dot, this.props);
     let key = index;
     let color = dotColor;
-    
+
     if (item) {
       if (item.key) {
         key = item.key;

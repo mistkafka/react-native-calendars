@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React, {Component} from 'react';
 import {FlatList, View, Text} from 'react-native';
 import {Map} from 'immutable';
-import PropTypes from 'prop-types';
 import XDate from 'xdate';
 
 import styleConstructor from './style';
@@ -23,16 +22,6 @@ const NUMBER_OF_PAGES = 2; // must be a positive number
  */
 class WeekCalendar extends Component {
   static displayName = 'WeekCalendar';
-
-  static propTypes = {
-    ...CalendarList.propTypes,
-    /** the current date */
-    current: PropTypes.any,
-    /** whether to have shadow/elevation for the calendar */
-    allowShadow: PropTypes.bool,
-    /** whether to hide the names of the week days */
-    hideDayNames: PropTypes.bool
-  };
 
   static defaultProps = {
     firstDay: 0,
