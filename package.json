@@ -1,7 +1,7 @@
 {
   "name": "react-native-calendars",
   "version": "1.22.0",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "description": "React Native Calendar Components",
   "scripts": {
     "build": "xcodebuild -project ios/CalendarsExample.xcodeproj build",
@@ -35,8 +35,12 @@
     "xdate": "^0.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
     "@babel/core": "^7.12.9",
     "@babel/eslint-parser": "^7.13.4",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-syntax-class-properties": "^7.12.13",
+    "@babel/preset-react": "^7.13.13",
     "@babel/runtime": "^7.12.5",
     "@welldone-software/why-did-you-render": "^6.0.3",
     "babel-eslint": "^10.1.0",
@@ -59,7 +63,8 @@
     "react-native-navigation": "^6.7.1",
     "react-test-renderer": "^17.0.1",
     "semver": "5.x.x",
-    "shell-utils": "1.x.x"
+    "shell-utils": "1.x.x",
+    "shelljs": "^0.8.4"
   },
   "jest": {
     "preset": "react-native",
